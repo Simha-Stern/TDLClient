@@ -1,21 +1,24 @@
-<div>
-  <app-log-out />
-  <app-add-task-button />
-</div>
-<div *ngIf="error" class="error">{{ error }}</div>
-<div *ngIf="!error">
-  <div *ngIf="tasks.length === 0">
-    אין משימות.
+<div class="tasks-list">
+  <div class="buttons">
+    <app-log-out />
+    <app-add-task-button />
   </div>
-<ul *ngIf="tasks.length > 0">
-  <li *ngFor="let task of tasks">
-    <input
-      type="checkbox"
-      [checked]="task.completed"
-      (change)="onTaskCompletedChange(task, $event)"
-    />
-    <strong [ngClass]="{ 'completed-task': task.completed }">{{ task.title }}</strong>
-    <span *ngIf="task.description"> - {{ task.description }}</span>
-  </li>
-</ul>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div class="content" *ngIf="!error">
+    <div *ngIf="tasks.length === 0">אין משימות.</div>
+    <h2 *ngIf="tasks.length > 0">רשימת משימות</h2>
+    <ul *ngIf="tasks.length > 0">
+      <li *ngFor="let task of tasks">
+        <input
+          type="checkbox"
+          [checked]="task.completed"
+          (change)="onTaskCompletedChange(task, $event)"
+        />
+        <strong [ngClass]="{ 'completed-task': task.completed }">{{
+          task.title
+        }}</strong>
+        <span *ngIf="task.description"> - {{ task.description }}</span>
+      </li>
+    </ul>
+  </div>
 </div>

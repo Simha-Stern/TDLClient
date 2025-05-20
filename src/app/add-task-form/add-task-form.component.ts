@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class AddTaskFormComponent {
   title: string = '';
   error = '';
+  success = '';
 
 
   constructor(private taskService: TaskService, private router: Router) { }
@@ -21,12 +22,16 @@ export class AddTaskFormComponent {
     if (this.title.trim()) {
       this.taskService.addTaskApi(this.title.trim()).subscribe({
         next: () => {
-          alert('Task added!');
+          this.success = 'המשימה נוספה בהצלחה';
+          this.error = '';
           this.title = '';
+          setTimeout(() => {
+            this.router.navigate(['']);
+          }, 2000);
         },
         error: (err) => {
           console.error('Error adding task:', err);
-          this.error = 'Failed to add task';
+          this.error = 'שגיאה בהוספת משימה';
         }
       });
     }

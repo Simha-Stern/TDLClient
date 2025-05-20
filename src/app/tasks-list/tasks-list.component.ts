@@ -26,16 +26,14 @@ export class TasksListComponent implements OnInit {
     if (userId) {
       this.taskService.getTasksForUserApi().subscribe({
         next: (tasks) => {
-          console.log("🚀 ~ TasksListComponent ~ this.taskService.getTasksForUserApi ~ tasks:", tasks)
           this.tasks = tasks;
         },
         error: (err) => {
-          console.log("🚀 ~ TasksListComponent ~ this.taskService.getTasksForUserApi ~ err:", err)
-          this.error = 'Failed to load tasks';
+          this.error = 'שגיאה בטעינת המשימות שלך';
         }
       });
     } else {
-      this.error = 'User not logged in';
+      this.error = 'לא נמצא משתמש מחובר';
     }
   }
 
@@ -49,7 +47,7 @@ export class TasksListComponent implements OnInit {
         task.completed = completed;
       },
       error: () => {
-        this.error = 'Failed to update task status';
+        this.error = 'שגיאה בעדכון סטטוס המשימה';
       }
     });
   }

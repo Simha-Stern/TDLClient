@@ -29,12 +29,12 @@ export class RegisterComponent {
     this.auth.register(this.email, this.password).subscribe({
       next: () => {
         this.loading = false;
-        this.success = 'Registration successful! Please log in.';
+        this.success = 'נרשמת בהצלחה! כעת עליך להתחבר';
         setTimeout(() => this.router.navigate(['/login']), 1500);
       },
       error: err => {
         this.loading = false;
-        this.error = err.error?.error || 'Registration failed';
+        this.error = err.error?.error || 'שגיאה בהרשמה';
       }
     });
   }

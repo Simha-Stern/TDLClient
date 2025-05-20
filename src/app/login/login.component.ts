@@ -31,7 +31,7 @@ export class LoginComponent {
       },
       error: err => {
         this.loading = false;
-        this.error = err.error?.error || 'Login failed';
+        this.error = err.error?.error || 'שגיאה בהתחברות';
       }
     });
   }
