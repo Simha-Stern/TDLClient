@@ -1,0 +1,9 @@
+{
+  // a angular color palette
+  "workbench.colorCustomizations": {
+    "statusBar.background":  "#007ACC",
+    "statusBar.foreground": "#FFFFFF",
+    "statusBarItem.hoverBackground": "#005A9C",
+    "statusBarItem.hoverForeground": "#FFFFFF",
+  }
+}
