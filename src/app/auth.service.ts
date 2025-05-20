@@ -51,6 +51,7 @@ export class AuthService {
     if (!token) return null;
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log("🚀 ~ AuthService ~ getCurrentUserId ~ payload:", payload)
       return payload.userId || payload.sub || null;
     } catch {
       return null;
