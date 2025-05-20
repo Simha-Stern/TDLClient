@@ -3,10 +3,12 @@ import { TaskService, Task } from '../task.service';
 import { AuthService } from '../auth.service';
 
 import { CommonModule } from '@angular/common';
+import { LogOutComponent } from '../log-out/log-out.component';
+import { AddTaskButtonComponent } from '../add-task-button/add-task-button.component';
 
 @Component({
   selector: 'app-tasks-list',
-  imports: [CommonModule],
+  imports: [CommonModule, LogOutComponent, AddTaskButtonComponent],
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css'
 })
@@ -35,5 +37,20 @@ export class TasksListComponent implements OnInit {
     } else {
       this.error = 'User not logged in';
     }
+  }
+
+  onTaskCompletedChange(task: Task, event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input) return;
+    const completed = input.checked;
+    const updatedTask = { ...task, completed };
+    this.taskService.updateTaskApi(updatedTask).subscribe({
+      next: () => {
+        task.completed = completed;
+      },
+      error: () => {
+        this.error = 'Failed to update task status';
+      }
+    });
   }
 }

@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './auth/auth.guard';
+import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
 
 export const routes: Routes = [
-  { path: '', canActivate: [AuthGuard], loadComponent: () => import('./tasks-list/tasks-list.component').then(m => m.TasksListComponent) },
+  { path: '', component: TasksListComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'add-task', component: AddTaskFormComponent },
 ];

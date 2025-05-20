@@ -9,6 +9,7 @@ export interface Task {
   id: number;
   userId: string;
   title: string;
+  completed: boolean;
   description?: string;
 }
 
@@ -35,7 +36,22 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl + 'tasks', { headers });
   }
 
-  addTask(task: Omit<Task, 'id'>): void {
-    this.tasks.push({ ...task, id: this.nextId++ });
+  addTaskApi(title: string): Observable<Task> {
+    const token = this.authService.getToken?.();
+    const headers = token
+      ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+      : undefined;
+    return this.http.post<Task>(this.apiUrl + 'tasks', { title }, { headers });
+  }
+
+  updateTaskApi(task: Task): Observable<Task> {
+    const token = this.authService.getToken?.();
+    const headers = token
+      ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+      : undefined;
+    return this.http.put<Task>(`${this.apiUrl}tasks/${task.id}`, {
+      title: task.title,
+      completed: task.completed
+    }, { headers });
   }
 }
