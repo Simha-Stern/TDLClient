@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
@@ -44,5 +44,16 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     this.loggedIn.next(false);
+  }
+
+  getCurrentUserId(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.userId || payload.sub || null;
+    } catch {
+      return null;
+    }
   }
 }

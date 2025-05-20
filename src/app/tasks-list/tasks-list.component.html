@@ -1,0 +1,12 @@
+<div *ngIf="error" class="error">{{ error }}</div>
+<div *ngIf="!error">
+  <div *ngIf="tasks.length === 0">
+    אין משימות.
+  </div>
+  <ul *ngIf="tasks.length > 0">
+    <li *ngFor="let task of tasks">
+      <strong>{{ task.title }}</strong>
+      <span *ngIf="task.description"> - {{ task.description }}</span>
+    </li>
+  </ul>
+</div>
