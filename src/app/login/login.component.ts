@@ -4,13 +4,14 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 export class LoginComponent {
   email = '';
@@ -18,7 +19,7 @@ export class LoginComponent {
   error: string | null = null;
   loading = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) { }
 
   login() {
     this.error = null;

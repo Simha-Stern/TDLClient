@@ -1,16 +1,31 @@
 <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
-  <h2>Register</h2>
+  <h2>הרשמה</h2>
   <div>
-    <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="email" required autocomplete="username" />
+    <label>אימייל</label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      required
+      autocomplete="username"
+    />
   </div>
   <div>
-    <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="password" required autocomplete="new-password" />
+    <label>סיסמא</label>
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+      autocomplete="new-password"
+    />
   </div>
   <div *ngIf="error" class="error">{{ error }}</div>
   <div *ngIf="success" class="success">{{ success }}</div>
   <button type="submit" [disabled]="loading || !registerForm.form.valid">
-    {{ loading ? 'Registering...' : 'Register' }}
+    {{ loading ? "Registering..." : "Register" }}
   </button>
+  <div class="login-link">
+    כבר יש לך חשבון ?<a routerLink="/login"> התחבר כאן</a>
+  </div>
 </form>

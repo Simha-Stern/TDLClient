@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '/';
+  private apiUrl = 'http://localhost:3000/';
   private tokenKey = 'jwt_token';
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
