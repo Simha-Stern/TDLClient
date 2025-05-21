@@ -1,6 +1,6 @@
 <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
   <h2>התחברות</h2>
-  <div>
+  <div class="login-form-field">
     <label>אימייל</label>
     <input
       type="email"
@@ -10,19 +10,22 @@
       autocomplete="username"
     />
   </div>
-  <div>
+  <div class="login-form-field">
     <label>סיסמא</label>
     <input
-      type="password"
+      [type]="showPassword ? 'text' : 'password'"
       [(ngModel)]="password"
       name="password"
       required
       autocomplete="current-password"
     />
+
+    <input type="checkbox" [(ngModel)]="showPassword" name="showPassword" />
+    הצג סיסמא
   </div>
   <div *ngIf="error" class="error">{{ error }}</div>
   <button type="submit" [disabled]="loading || !loginForm.form.valid">
-    {{ loading ? "Logging in..." : "Login" }}
+    {{ loading ? "מתחבר..." : "התחבר" }}
   </button>
   <div class="register-link">
     עדיין לא רשום ? <a routerLink="/register">הרשם כאן</a>

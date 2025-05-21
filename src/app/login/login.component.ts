@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent {
   email = '';
   password = '';
+  showPassword = false;
   error: string | null = null;
   loading = false;
 
@@ -31,8 +32,15 @@ export class LoginComponent {
       },
       error: err => {
         this.loading = false;
+        if (err.status === 401 || err.error?.status === 401) {
+          this.error = 'אחד או יותר מהפרטים שהוזנו שגויים';
+          return;
+        }
         this.error = err.error?.error || 'שגיאה בהתחברות';
       }
     });
+  }
+  setShowpass() {
+    this.showPassword ? this.showPassword = false : this.showPassword = true
   }
 }

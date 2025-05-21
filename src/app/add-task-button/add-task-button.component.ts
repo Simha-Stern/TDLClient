@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-task-button.component.css'
 })
 export class AddTaskButtonComponent {
-    title: string = '';
+  title: string = '';
 
   constructor(private router: Router) { }
 

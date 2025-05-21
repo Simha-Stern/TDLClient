@@ -16,11 +16,12 @@ import { RouterModule } from '@angular/router';
 export class RegisterComponent {
   email = '';
   password = '';
+  showPassword = false;
   error: string | null = null;
   loading = false;
   success: string | null = null;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) { }
 
   register() {
     this.error = null;
@@ -37,5 +38,8 @@ export class RegisterComponent {
         this.error = err.error?.error || 'שגיאה בהרשמה';
       }
     });
+  }
+  setShowpass() {
+    this.showPassword ? this.showPassword = false : this.showPassword = true
   }
 }

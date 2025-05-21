@@ -1,3 +1,17 @@
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 350px;
+  margin: 24px auto;
+  padding: 20px;
+  background: #f7f9fc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+  align-items: center;
+  /* rtl */
+  direction: rtl;
+}
 
 .beck {
   background-color: #fff;
@@ -10,6 +24,8 @@
   cursor: pointer;
   margin-bottom: 16px;
   transition: background 0.2s, color 0.2s;
+  width: 100px;
+  align-self: flex-end;
 }
 
 .beck:hover {
@@ -17,18 +33,6 @@
   color: #fff;
 }
 
-.add-task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 350px;
-  margin: 24px auto;
-  padding: 20px;
-  background: #f7f9fc;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
-  align-items: center;
-}
 
 form {
   display: flex;

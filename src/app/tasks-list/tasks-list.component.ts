@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { LogOutComponent } from '../log-out/log-out.component';
 import { AddTaskButtonComponent } from '../add-task-button/add-task-button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks-list',
@@ -18,7 +19,8 @@ export class TasksListComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,8 @@ export class TasksListComponent implements OnInit {
         }
       });
     } else {
-      this.error = 'לא נמצא משתמש מחובר';
+      // this.error = 'לא נמצא משתמש מחובר'
+    this.router.navigate(['/login']);
     }
   }
 
