@@ -26,8 +26,11 @@ export class LoginComponent {
     this.error = null;
     this.loading = true;
     this.auth.login(this.email, this.password).subscribe({
-      next: () => {
+      next: (response) => {
         this.loading = false;
+        if (response && response.name) {
+          localStorage.setItem('user_name', response.name);
+        }
         this.router.navigate(['/']);
       },
       error: err => {

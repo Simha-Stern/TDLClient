@@ -1,6 +1,16 @@
 <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
   <h2>הרשמה</h2>
   <div>
+    <label>שם מלא</label>
+    <input
+      type="text"
+      [(ngModel)]="name"
+      name="fullName"
+      required
+      autocomplete="name"
+    />
+  </div>
+  <div>
     <label>אימייל</label>
     <input
       type="email"

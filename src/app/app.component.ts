@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { LogOutComponent } from './log-out/log-out.component';
-import { AddTaskButtonComponent } from './add-task-button/add-task-button.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'TDLClient';
+
+  ngOnInit() {
+  }
 }

@@ -16,14 +16,18 @@ import { Router } from '@angular/router';
 export class TasksListComponent implements OnInit {
   tasks: Task[] = [];
   error: string | null = null;
+  userName: string | null = null;
+
 
   constructor(
     private taskService: TaskService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.userName = localStorage.getItem('user_name');
+
     const userId = this.authService.getCurrentUserId?.();
     if (userId) {
       this.taskService.getTasksForUserApi().subscribe({
@@ -36,7 +40,7 @@ export class TasksListComponent implements OnInit {
       });
     } else {
       // this.error = 'לא נמצא משתמש מחובר'
-    this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 

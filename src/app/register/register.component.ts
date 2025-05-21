@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, FormsModule, RouterModule]
 })
 export class RegisterComponent {
+  name = '';
   email = '';
   password = '';
   showPassword = false;
@@ -27,11 +28,14 @@ export class RegisterComponent {
     this.error = null;
     this.success = null;
     this.loading = true;
-    this.auth.register(this.email, this.password).subscribe({
-      next: () => {
+    this.auth.register(this.email, this.password, this.name).subscribe({
+      next: (response) => {
         this.loading = false;
-        this.success = 'נרשמת בהצלחה! כעת עליך להתחבר';
-        setTimeout(() => this.router.navigate(['/login']), 1500);
+        if (response && response.name) {
+          localStorage.setItem('user_name', response.name);
+        }
+        this.success = 'נרשמת בהצלחה! תיכף ניכנס...';
+        setTimeout(() => this.router.navigate(['/']), 1500);
       },
       error: err => {
         this.loading = false;
