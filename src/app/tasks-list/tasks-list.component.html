@@ -3,7 +3,7 @@
     *ngIf="userName"
     style="text-align: center; margin: 1em 0; font-size: 1.2em"
   >
-     {{ userName }} שלום 
+    {{ userName }} ,שלום
   </div>
   <div class="buttons">
     <app-log-out />
@@ -15,15 +15,23 @@
     <h2 *ngIf="tasks.length > 0">רשימת משימות</h2>
     <ul *ngIf="tasks.length > 0">
       <li *ngFor="let task of tasks">
-        <input
-          type="checkbox"
-          [checked]="task.completed"
-          (change)="onTaskCompletedChange(task, $event)"
-        />
-        <strong [ngClass]="{ 'completed-task': task.completed }">{{
-          task.title
-        }}</strong>
-        <span *ngIf="task.description"> - {{ task.description }}</span>
+        <div class="task">
+          <input
+            type="checkbox"
+            [checked]="task.completed"
+            (change)="onTaskCompletedChange(task, $event)"
+          />
+          <strong class="title" [ngClass]="{ 'completed-task': task.completed }">{{
+            task.title
+          }}</strong>
+        </div>
+        <!-- <span *ngIf="task.description"> - {{ task.description }}</span> -->
+        <div class="task-btns">
+          <button class="task-btn edit" (click)="editTask(task)">ערוך</button>
+          <button class="task-btn delete" (click)="deleteTask(task)">
+            מחק
+          </button>
+        </div>
       </li>
     </ul>
   </div>

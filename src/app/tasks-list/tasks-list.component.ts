@@ -17,6 +17,18 @@ export class TasksListComponent implements OnInit {
   tasks: Task[] = [];
   error: string | null = null;
   userName: string | null = null;
+  selectedTask: Task | null = null;
+
+  deleteTask(task: Task) {
+    this.taskService.deleteTaskApi(task.id).subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter(t => t.id !== task.id);
+      },
+      error: () => {
+        this.error = 'שגיאה במחיקת המשימה';
+      }
+    });
+  }
 
 
   constructor(
@@ -42,6 +54,10 @@ export class TasksListComponent implements OnInit {
       // this.error = 'לא נמצא משתמש מחובר'
       this.router.navigate(['/login']);
     }
+  }
+
+  editTask(task: Task) {
+    this.router.navigate(['/edit-task', task.id]);
   }
 
   onTaskCompletedChange(task: Task, event: Event) {

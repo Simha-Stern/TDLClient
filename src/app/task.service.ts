@@ -54,4 +54,12 @@ export class TaskService {
       completed: task.completed
     }, { headers });
   }
+
+  deleteTaskApi(id: number): Observable<any> {
+    const token = this.authService.getToken?.();
+    const headers = token
+      ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+      : undefined;
+    return this.http.delete(`${this.apiUrl}tasks/${id}`, { headers });
+  }
 }
