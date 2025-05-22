@@ -1,4 +1,4 @@
-.add-task-form {
+.edit-task-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -9,7 +9,6 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
   align-items: center;
-  /* rtl */
   direction: rtl;
 }
 
