@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,10 +10,13 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'TDLClient';
+  constructor(private router: Router) { }
 
   ngOnInit() {
     // מחיקת הטוקן בכניסה ראשונית
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+
   }
 
   @HostListener('window:beforeunload', ['$event'])
